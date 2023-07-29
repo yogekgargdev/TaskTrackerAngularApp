@@ -1,1 +1,2 @@
-<app-task-list *ngFor="let TaskData of TasksLists" [task]="TaskData"></app-task-list>
+<app-task-list *ngFor="let TaskData of TasksLists" [task]="TaskData"
+    (OnDeleteTask)="DeleteTask(TaskData)" (OnToggleTask)="ToggleTask(TaskData)"></app-task-list>

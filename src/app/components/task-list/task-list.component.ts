@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { Task } from 'src/app/Task';
 
@@ -10,5 +10,15 @@ import { Task } from 'src/app/Task';
 export class TaskListComponent {
   faXmark = faXmark;
   @Input() task: Task;
+  @Output() OnDeleteTask: EventEmitter<Task> = new EventEmitter<Task>();
+  @Output() OnToggleTask: EventEmitter<Task> = new EventEmitter<Task>();
+
+  OnClick(task: Task) {
+    this.OnDeleteTask.emit(task);
+  }
+  ondblclick(task: Task) {
+    this.OnToggleTask.emit(task);
+
+  }
 
 }

@@ -18,4 +18,15 @@ export class TasksComponent implements OnInit {
     this.TaskService.GetServie().subscribe((tasks) => this.TasksLists = tasks);
   }
 
+  DeleteTask(Task:Task)
+  {
+    this.TaskService.DeleteTaskService(Task).subscribe(() => this.TasksLists = this.TasksLists.filter((task)=>task.id!=Task.id));
+  }
+
+  ToggleTask(Task:Task)
+  {
+    Task.reminder=!Task.reminder;
+    this.TaskService.UpateToggleTaskService(Task).subscribe();
+  }
+
 }
