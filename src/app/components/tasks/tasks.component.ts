@@ -8,18 +8,14 @@ import { ServiceService } from '../../services/service.service'
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.css']
 })
-export class TasksComponent implements OnInit{
+export class TasksComponent implements OnInit {
 
   TasksLists: Task[] = [];
 
-  constructor(private TaskService : ServiceService) { }
-  
+  constructor(private TaskService: ServiceService) { }
+
   ngOnInit(): void {
-     this.TasksLists = this.TaskService.GetServie();
+    this.TaskService.GetServie().subscribe((tasks) => this.TasksLists = tasks);
   }
-
-
-
-
 
 }

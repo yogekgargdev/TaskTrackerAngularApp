@@ -13,10 +13,10 @@ export class ServiceService {
 
   constructor() { }
 
-  GetServie() : Task[]
+  GetServie() : Observable<Task[]>
   {
     this.TaskList= TASKS;
-    return this.TaskList;
-    //return of(this.TaskList);
+    //return this.TaskList;
+    return of(this.TaskList);
   }
 }
