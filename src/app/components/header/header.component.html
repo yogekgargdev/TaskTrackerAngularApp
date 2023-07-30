@@ -1,4 +1,4 @@
-<header>
+<header *ngIf="CheckHomePageRouter('/')">
     <h1>{{title}}</h1>
-    <app-button color="green" text="Click Me!" (btnClicked)="toggleAddTask()"></app-button>
+    <app-button color="{{AddTask ? 'red' : 'green'}}" text="{{AddTask ? 'Close' : 'Add'}}" (btnClicked)="toggleAddTask()"></app-button>
 </header>

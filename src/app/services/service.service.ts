@@ -37,4 +37,8 @@ export class ServiceService {
     const UpdateUrl=`${requestURL}/${task.id}`
     return this.http.put<Task>(UpdateUrl,task,httpOptions);
   }
+  AddTaskService(task:Task) : Observable<Task> 
+  {
+    return this.http.post<Task>(requestURL,task,httpOptions);
+  }
 }

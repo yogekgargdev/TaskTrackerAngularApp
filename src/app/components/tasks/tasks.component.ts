@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Task } from '../../Task';
 import { TASKS } from '../../mock-tasks'
 import { ServiceService } from '../../services/service.service'
+import {Subscription} from 'rxjs';
+import { UiService } from 'src/app/services/ui.service';
+
 
 @Component({
   selector: 'app-tasks',
@@ -11,8 +14,12 @@ import { ServiceService } from '../../services/service.service'
 export class TasksComponent implements OnInit {
 
   TasksLists: Task[] = [];
+  ViewAddTask: boolean = false;
+  subscription:Subscription;
 
-  constructor(private TaskService: ServiceService) { }
+  constructor(private TaskService: ServiceService,private uiService:UiService) { 
+     this.subscription = this.uiService.OnToggle().subscribe((AddTaskView)=>this.ViewAddTask=AddTaskView);
+  }
 
   ngOnInit(): void {
     this.TaskService.GetServie().subscribe((tasks) => this.TasksLists = tasks);
@@ -27,6 +34,11 @@ export class TasksComponent implements OnInit {
   {
     Task.reminder=!Task.reminder;
     this.TaskService.UpateToggleTaskService(Task).subscribe();
+  }
+
+  AddTask(task:Task)
+  {
+    this.TaskService.AddTaskService(task).subscribe((task)=>this.TasksLists.push(task));
   }
 
 }
